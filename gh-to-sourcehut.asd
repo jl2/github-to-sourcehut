@@ -20,7 +20,8 @@
   :license  "ISC"
   :version "0.0.1"
   :serial t
-  :depends-on (#:j-utils #:alexandria #:dexador #:st-json)
+  :depends-on (#:j-utils #:alexandria #:dexador #:st-json
+                         #:lparallel #:uiop)
   :components ((:file "package")
                (:file "gh-to-sourcehut"))
   :in-order-to ((test-op (test-op gh-to-sourcehut.test))))

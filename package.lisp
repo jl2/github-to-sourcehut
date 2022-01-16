@@ -1,7 +1,6 @@
-;;;; package.lisp 
+;; package.lisp
 ;;
 ;; Copyright (c) 2021 Jeremiah LaRocco <jeremiah_larocco@fastmail.com>
-
 
 ;; Permission to use, copy, modify, and/or distribute this software for any
 ;; purpose with or without fee is hereby granted, provided that the above
@@ -16,5 +15,11 @@
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 (defpackage :gh-to-sourcehut
-  (:use #:cl #:j-utils #:alexandria)
-  (:export #:load-config))
+  (:use #:cl #:j-utils #:alexandria #:st-json)
+  (:export #:load-config
+           #:get-all-user-repos
+           #:gh-get
+           #:clone-user-gh-repos
+           #:get-gh-cache
+           #:clear-gh-cache
+           ))

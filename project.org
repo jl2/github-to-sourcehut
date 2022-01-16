@@ -1,0 +1,29 @@
+* gh-to-sourcehut
+
+** About
+
+REPL tools to migrate GitHub repos into SourceHut
+
+** Overview
+This is only half working.  Right now it clones GitHub repos locally.
+It doesn't create repos in SourceHut yet.
+Create a .config file in the gh-to-sourcehut package directory
+
+#+begin_src javascript
+  {
+      gh_username: "somebody",
+      gh_token: "ghp_your_token",
+      sh_username: "somebody",
+      sh_token: "your_sh_token",
+  }
+  #+end_src
+
+  #+begin_src lisp
+    (ql:quickload :gh-to-sourcehut)
+    ;; Edit .config in the gh-to-sourcehut package directory and reload
+    (ql:quickload :gh-to-sourcehut)
+    (multiple-value-setq (*failed* *succeeded*)
+    (gh-to-sourcehut:clone-user-gh-repos "jl2" "/temp/jl2-repos/")
+  #+end_src
+
+** 
