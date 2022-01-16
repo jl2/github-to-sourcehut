@@ -1,4 +1,4 @@
-# gh-to-srht
+# gh-to-sourcehut
 ### _Jeremiah LaRocco <jeremiah_larocco@fastmail.com>_
 
 This is (will be) a tool to clone repos from GitHub and create corresponding repos on Sourcehut.

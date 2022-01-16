@@ -1,4 +1,4 @@
-;;;; gh-to-srht.lisp 
+;; gh-to-sourcehut.test.asd
 ;;
 ;; Copyright (c) 2021 Jeremiah LaRocco <jeremiah_larocco@fastmail.com>
 
@@ -14,14 +14,24 @@
 ;; ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-(in-package :gh-to-srht)
+(in-package :cl-user)
+(defpackage :gh-to-sourcehut.test-asd
+  (:use :cl :asdf))
+(in-package :gh-to-sourcehut.test-asd)
 
-(defparameter *config-path*
-  (asdf:system-relative-pathname :gh-to-srht ".config"))
-
-(defun load-config ()
-  (with-input-from-file (ins *config-path*)
-    (st-json:read-json ins)))
-
-(defparameter *config* (load-config))
-
+(asdf:defsystem #:gh-to-sourcehut.test
+  :description "Test gh-to-sourcehut"
+  :author "Jeremiah LaRocco <jeremiah_larocco@fastmail.com>"
+  :license  "ISC"
+  :version "0.0.1"
+  :serial t
+  :depends-on (:gh-to-sourcehut
+               :fiveam)
+  :components ((:module "t"
+                :components
+                ((:file "package"))))
+  :perform (test-op :after (op c)
+                    (eval
+                     (read-from-string
+                      "(every #'fiveam::TEST-PASSED-P
+                           (5am:run :gh-to-sourcehut))"))))

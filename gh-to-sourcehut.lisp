@@ -1,7 +1,6 @@
-;;;; gh-to-srht.test.asd 
+;; gh-to-sourcehut.lisp
 ;;
 ;; Copyright (c) 2021 Jeremiah LaRocco <jeremiah_larocco@fastmail.com>
-
 
 ;; Permission to use, copy, modify, and/or distribute this software for any
 ;; purpose with or without fee is hereby granted, provided that the above
@@ -15,21 +14,13 @@
 ;; ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-(in-package :cl-user)
-(defpackage :gh-to-srht.test-asd
-  (:use :cl :asdf))
-(in-package :gh-to-srht.test-asd)
+(in-package :gh-to-sourcehut)
 
-(asdf:defsystem #:gh-to-srht.test
-  :description "Test gh-to-srht"
-  :author "Jeremiah LaRocco <jeremiah_larocco@fastmail.com>"
-  :license  "ISC"
-  :version "0.0.1"
-  :serial t
-  :depends-on (:gh-to-srht
-               :fiveam)
-  
-  :components ((:module "t"
-                :components 
-                ((:file "package"))))
-  :perform (test-op :after (op c) (eval (read-from-string "(every #'fiveam::TEST-PASSED-P (5am:run :gh-to-srht))"))))
+(defparameter *config-path*
+  (asdf:system-relative-pathname :gh-to-sourcehut ".config"))
+
+(defun load-config ()
+  (with-input-from-file (ins *config-path*)
+    (st-json:read-json ins)))
+
+(defparameter *config* (load-config))

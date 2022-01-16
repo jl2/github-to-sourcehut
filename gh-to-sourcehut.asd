@@ -1,4 +1,4 @@
-;;;; gh-to-srht.asd 
+;; gh-to-sourcehut.asd
 ;;
 ;; Copyright (c) 2021 Jeremiah LaRocco <jeremiah_larocco@fastmail.com>
 
@@ -14,7 +14,7 @@
 ;; ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-(asdf:defsystem #:gh-to-srht
+(asdf:defsystem #:gh-to-sourcehut
   :description "A tool to clone repos from GitHub and create corresponding repos on Sourcehut."
   :author "Jeremiah LaRocco <jeremiah_larocco@fastmail.com>"
   :license  "ISC"
@@ -22,5 +22,5 @@
   :serial t
   :depends-on (#:j-utils #:alexandria #:dexador #:st-json)
   :components ((:file "package")
-               (:file "gh-to-srht"))
-  :in-order-to ((test-op (test-op gh-to-srht.test))))
+               (:file "gh-to-sourcehut"))
+  :in-order-to ((test-op (test-op gh-to-sourcehut.test))))

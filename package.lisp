@@ -15,6 +15,6 @@
 ;; ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-(defpackage :gh-to-srht
+(defpackage :gh-to-sourcehut
   (:use #:cl #:j-utils #:alexandria)
   (:export #:load-config))

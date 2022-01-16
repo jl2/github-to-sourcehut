@@ -1,7 +1,6 @@
-;;;; package.lisp
+;; package.lisp
 ;;
 ;; Copyright (c) 2021 Jeremiah LaRocco <jeremiah_larocco@fastmail.com>
-
 
 ;; Permission to use, copy, modify, and/or distribute this software for any
 ;; purpose with or without fee is hereby granted, provided that the above
@@ -16,16 +15,16 @@
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 (in-package :cl-user)
-(defpackage :gh-to-srht.test
+(defpackage :gh-to-sourcehut.test
   (:use :cl
         :fiveam
         :alexandria
-        :gh-to-srht))
+        :gh-to-sourcehut))
 
-(in-package :gh-to-srht.test)
+(in-package :gh-to-sourcehut.test)
 
-(def-suite :gh-to-srht)
-(in-suite :gh-to-srht)
+(def-suite :gh-to-sourcehut)
+(in-suite :gh-to-sourcehut)
 
 (test config
       (let ((config (load-config)))
