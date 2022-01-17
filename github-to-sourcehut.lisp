@@ -80,10 +80,10 @@ seconds:~%    (~a) ~a~%"
                                          &key (thread-count 8)
                                            (show-results nil)
                                            (show-failures nil))
-  "Clone all of a user's GitHub repos into base-directory, and then push to
+  "Clone all of a user's GitHub repos into base-directory, and then push to\
  SourceHut.
-Uses JSON .config file in the package directory.
-Uses the gh_username, gh_token, sh_username, and sh_token for API and Git
+Uses JSON .config file in the package directory.\
+Uses the gh_username, gh_token, sh_username, and sh_token for API and Git\
 calls."
   (let ((repos (all-user-github-repos (getjso "gh_username" *config*))))
     (ensure-directories-exist base-directory)
