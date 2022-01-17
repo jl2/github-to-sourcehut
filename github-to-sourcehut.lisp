@@ -53,13 +53,20 @@
     ;; There must be a bug somewhere, but this push fails with error 128 sometimes.
     ;; I haven't figured out where the error is yet, but trying again usually works.
     (loop
-      :for tries :below 5
+      :with retry-count = 5
+      :with timeout = 0.5
+      :for try :below retry-count
       :for push-result = (push-repo base-directory repo "srht-remote")
       :do
          (push push-result command-results)
          (when (/= 0 (cmd-result push-result))
-           (format t "git push try ~a failed, trying again in 0.5 seconds.~%" tries)
-           (sleep 0.5))
+           (format t "Command failure, try ~a of ~a, will try again in ~a seconds:~%    (~a) ~a~%"
+                   try
+                   retry-count
+                   timeout
+                   (cmd-result push-result)
+                   (cmd-command push-result))
+           (sleep timeout))
       :until (= (cmd-result push-result) 0))
     command-results))
 
