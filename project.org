@@ -4,12 +4,12 @@
 
 This is a Common Lisp REPL utility package to mirror GitHub repos on SourceHut.
 
-Eventually it may support mirroring to BitBucket and more advanced mirroring scenarios, but for
-right now it's very basic.
+Eventually it may support mirroring to BitBucket and more advanced mirroring
+scenarios, but for right now it's very basic.
 
 ** Usage
-Create a .config file in the github-to-sourcehut package directory.  It should have
-the following fields:
+Create a .config file in the github-to-sourcehut package directory.  It should
+have the following fields:
 
 #+begin_src javascript
   {
@@ -18,15 +18,17 @@ the following fields:
       sh_username: "somebody",
       sh_token: "your_sh_token",
   }
-  #+end_src
+#+end_src
 
-Load :github-to-sourcehut in the Lisp REPL and run #'mirror-github-repos-on-sourcehut:
+Load :github-to-sourcehut in the Lisp REPL and run
+#'mirror-github-repos-on-sourcehut:
 
-  #+begin_src lisp
-    (ql:quickload :github-to-sourcehut)
-    (time
-     (github-to-sourcehut:mirror-github-repos-on-sourcehut "/home/jeremiah/my-temp-repos/"
-                                                           :thread-count 24))
-  #+end_src
+#+begin_src lisp
+  (ql:quickload :github-to-sourcehut)
+  (time
+   (github-to-sourcehut:mirror-github-repos-on-sourcehut
+    "/home/jeremiah/my-temp-repos/"
+    :thread-count 24))
+#+end_src
 
 

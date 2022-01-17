@@ -25,11 +25,13 @@
                           (apply #'format nil url args))))
     (multiple-value-bind (body response)
         (handler-bind ((dex:http-request-failed 'dex:ignore-and-continue))
-          (dex:get url
-                 :headers (list (cons "Authorization"
-                                      (concatenate 'string
-                                                   "token "
-                                                   (getjso "sh_token" *config*))))))
+          (dex:get
+           url
+           :headers (list (cons
+                           "Authorization"
+                           (concatenate 'string
+                                        "token "
+                                        (getjso "sh_token" *config*))))))
       (list url (read-json-from-string body) response))))
 
 (defun sourcehut-post (type data url &rest args)
@@ -41,14 +43,16 @@
                           (apply #'format nil url args))))
     (multiple-value-bind (body response)
         (handler-bind ((dex:http-request-failed 'dex:ignore-and-continue))
-          (dex:post url
-                    :content (st-json:write-json-to-string data)
-                    :headers (list (cons "content-type"
-                                         "application/json")
-                                   (cons "Authorization"
-                                         (concatenate 'string
-                                                      "token "
-                                                      (getjso "sh_token" *config*))))))
+          (dex:post
+           url
+           :content (st-json:write-json-to-string data)
+           :headers (list
+                     (cons "content-type"
+                           "application/json")
+                     (cons "Authorization"
+                           (concatenate 'string
+                                        "token "
+                                        (getjso "sh_token" *config*))))))
       (list url (read-json-from-string body) response))))
 
 (defun sourcehut-put (type data url &rest args)
@@ -60,14 +64,15 @@
                           (apply #'format nil url args))))
     (multiple-value-bind (body response)
         (handler-bind ((dex:http-request-failed 'dex:ignore-and-continue))
-          (dex:put url
-                   :content (st-json:write-json-to-string data)
-                   :headers (list (cons "content-type"
-                                         "application/json")
-                                   (cons "Authorization"
-                                         (concatenate 'string
-                                                      "token "
-                                                      (getjso "sh_token" *config*))))))
+          (dex:put
+           url
+           :content (st-json:write-json-to-string data)
+           :headers (list (cons "content-type"
+                                "application/json")
+                          (cons "Authorization"
+                                (concatenate 'string
+                                             "token "
+                                             (getjso "sh_token" *config*))))))
       (list url (read-json-from-string body) response))))
 
 (defun sourcehut-delete (type url &rest args)
@@ -80,11 +85,12 @@
 
     (multiple-value-bind (body response)
         (handler-bind ((dex:http-request-failed 'dex:ignore-and-continue))
-          (dex:delete url
-                      :headers (list (cons "Authorization"
-                                           (concatenate 'string
-                                                        "token "
-                                                        (getjso "sh_token" *config*))))))
+          (dex:delete
+           url
+           :headers (list (cons "Authorization"
+                                (concatenate 'string
+                                             "token "
+                                             (getjso "sh_token" *config*))))))
       (declare (ignorable body))
       (list url nil response))))
 

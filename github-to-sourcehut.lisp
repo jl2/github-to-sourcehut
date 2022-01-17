@@ -30,10 +30,11 @@
 
     ;; Create the repo on SourceHut if it doesn't exist.
     (when (not (sourcehut-repo-exists-p repo))
-      (push (create-sourcehut-repo repo
-                                   :visibility (if (eq :true (getjso "private" repo))
-                                                   "private"
-                                                   "public"))
+      (push (create-sourcehut-repo
+             repo
+             :visibility (if (eq :true (getjso "private" repo))
+                             "private"
+                             "public"))
             command-results))
 
     ;; It seems that sometimes the create doesn't take effect immediately, so
@@ -47,11 +48,14 @@
       (error "repo ~a still does not exist!" repo))
 
     ;; Add the srht-remote if it doesn't exist
-    (push (add-git-remote base-directory repo "srht-remote" (sourcehut-repo-url repo))
+    (push (add-git-remote base-directory
+                          repo
+                          "srht-remote"
+                          (sourcehut-repo-url repo))
           command-results)
 
-    ;; There must be a bug somewhere, but this push fails with error 128 sometimes.
-    ;; I haven't figured out where the error is yet, but trying again usually works.
+    ;; This push fails with error 128 sometimes. I haven't figured out where
+    ;; the error is yet, but trying again usually works.
     (loop
       :with retry-count = 5
       :with timeout = 0.5
@@ -60,7 +64,9 @@
       :do
          (push push-result command-results)
          (when (/= 0 (cmd-result push-result))
-           (format t "Command failure, try ~a of ~a, will try again in ~a seconds:~%    (~a) ~a~%"
+           (format t
+                   "Command failure, try ~a of ~a, will try again in ~a \
+seconds:~%    (~a) ~a~%"
                    try
                    retry-count
                    timeout
@@ -70,18 +76,23 @@
       :until (= (cmd-result push-result) 0))
     command-results))
 
-(defun mirror-github-repos-on-sourcehut (base-directory &key (thread-count 8)
-                                                                   (show-results nil)
-                                                                   (show-failures nil))
-  "Clone all of a user's GitHub repos into base-directory, and then push to SourceHut.
+(defun mirror-github-repos-on-sourcehut (base-directory
+                                         &key (thread-count 8)
+                                           (show-results nil)
+                                           (show-failures nil))
+  "Clone all of a user's GitHub repos into base-directory, and then push to
+ SourceHut.
 Uses JSON .config file in the package directory.
-Uses the gh_username, gh_token, sh_username, and sh_token for API and Git calls."
+Uses the gh_username, gh_token, sh_username, and sh_token for API and Git
+calls."
   (let ((repos (all-user-github-repos (getjso "gh_username" *config*))))
     (ensure-directories-exist base-directory)
     (let ((mirror-results
-            (lparallel.kernel-util:with-temp-kernel (thread-count :name "git-clone")
+            (lparallel.kernel-util:with-temp-kernel
+                (thread-count :name "git-clone")
               (lparallel:pmapcar
-               (alexandria:curry #'mirror-github-repo-to-sourcehut base-directory)
+               (alexandria:curry #'mirror-github-repo-to-sourcehut
+                                 base-directory)
                repos))))
 
       ;; Show the output if requested

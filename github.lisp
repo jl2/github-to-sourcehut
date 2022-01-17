@@ -37,8 +37,9 @@
     :with per-page = 50
     :for page :from 1
     :for next-page = (cmd-output (github-get
-                            "/users/~a/repos?sort=updated&direction=DECs&per_page=~a&page=~a"
-                            username per-page page))
+                                  "/users/~a/repos?sort=updated&direction=dec\
+&per_page=~a&page=~a"
+                     username per-page page))
     :for page-count = (length next-page)
     :while (> page-count 0)
     :appending next-page :into results
