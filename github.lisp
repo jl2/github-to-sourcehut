@@ -21,7 +21,6 @@
   (let ((url (concatenate 'string
                           "https://api.github.com"
                           (apply #'format nil url args))))
-    (format t "Fetching ~a~%" url)
     (multiple-value-bind (body response)
         (handler-bind ((dex:http-request-failed 'dex:ignore-and-continue))
           (dex:get url
