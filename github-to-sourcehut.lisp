@@ -101,7 +101,7 @@ calls."
           :for results :in mirror-results
           :do
              (loop
-               :for (cmd output result error) :in (reverse results)
+               :for (cmd nil result) :in (reverse results)
                :when (or show-results
                          (and show-failures
                               (or
