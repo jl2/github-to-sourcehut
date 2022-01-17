@@ -1,11 +1,11 @@
 # github-to-sourcehut
 ### _Jeremiah LaRocco <jeremiah_larocco@fastmail.com>_
 
-This is (will be) a tool to clone repos from GitHub and create corresponding repos on Sourcehut.
+This is a tool for mirroring GitHub repos on SourceHut.
 
-Eventually it may support going the other direction, and more advanced mirroring scenarios.
+Eventually it may support mirroring to BitBucket and more advanced mirroring scenarios.
 
-See project.org for more information and instructions for how to use it.
+See [project.org](https://github.com/jl2/github-to-sourcehut/blob/master/project.org) for more information and instructions for how to use it.
 
 ## License
 

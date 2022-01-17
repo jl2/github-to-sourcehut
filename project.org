@@ -2,7 +2,10 @@
 
 ** About
 
-Common Lisp REPL utility to migrate GitHub repos into SourceHut.
+This is a Common Lisp REPL utility package to mirror GitHub repos on SourceHut.
+
+Eventually it may support mirroring to BitBucket and more advanced mirroring scenarios, but for
+right now it's very basic.
 
 ** Usage
 Create a .config file in the github-to-sourcehut package directory.  It should have
