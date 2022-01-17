@@ -1,4 +1,4 @@
-;; gh-to-sourcehut.test.asd
+;; github-to-sourcehut.asd
 ;;
 ;; Copyright (c) 2021 Jeremiah LaRocco <jeremiah_larocco@fastmail.com>
 
@@ -14,24 +14,17 @@
 ;; ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-(in-package :cl-user)
-(defpackage :gh-to-sourcehut.test-asd
-  (:use :cl :asdf))
-(in-package :gh-to-sourcehut.test-asd)
-
-(asdf:defsystem #:gh-to-sourcehut.test
-  :description "Test gh-to-sourcehut"
+(asdf:defsystem #:github-to-sourcehut
+  :description "A tool to clone repos from GitHub and create corresponding repos on Sourcehut."
   :author "Jeremiah LaRocco <jeremiah_larocco@fastmail.com>"
   :license  "ISC"
   :version "0.0.1"
   :serial t
-  :depends-on (:gh-to-sourcehut
-               :fiveam)
-  :components ((:module "t"
-                :components
-                ((:file "package"))))
-  :perform (test-op :after (op c)
-                    (eval
-                     (read-from-string
-                      "(every #'fiveam::TEST-PASSED-P
-                           (5am:run :gh-to-sourcehut))"))))
+  :depends-on (#:j-utils #:alexandria #:dexador #:st-json
+                         #:lparallel #:uiop)
+  :components ((:file "package")
+               (:file "common")
+               (:file "github")
+               (:file "sourcehut")
+               (:file "github-to-sourcehut"))
+  :in-order-to ((test-op (test-op github-to-sourcehut.test))))

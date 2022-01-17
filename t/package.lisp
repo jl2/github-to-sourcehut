@@ -15,16 +15,16 @@
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 (in-package :cl-user)
-(defpackage :gh-to-sourcehut.test
+(defpackage :github-to-sourcehut.test
   (:use :cl
         :fiveam
         :alexandria
-        :gh-to-sourcehut))
+        :github-to-sourcehut))
 
-(in-package :gh-to-sourcehut.test)
+(in-package :github-to-sourcehut.test)
 
-(def-suite :gh-to-sourcehut)
-(in-suite :gh-to-sourcehut)
+(def-suite :github-to-sourcehut)
+(in-suite :github-to-sourcehut)
 
 (test config
       (let ((config (load-config)))

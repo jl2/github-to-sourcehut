@@ -1,13 +1,12 @@
-* gh-to-sourcehut
+* github-to-sourcehut
 
 ** About
 
-REPL tools to migrate GitHub repos into SourceHut
+Common Lisp REPL utility to migrate GitHub repos into SourceHut.
 
-** Overview
-This is only half working.  Right now it clones GitHub repos locally.
-It doesn't create repos in SourceHut yet.
-Create a .config file in the gh-to-sourcehut package directory
+** Usage
+Create a .config file in the github-to-sourcehut package directory.  It should have
+the following fields:
 
 #+begin_src javascript
   {
@@ -18,12 +17,13 @@ Create a .config file in the gh-to-sourcehut package directory
   }
   #+end_src
 
+Load :github-to-sourcehut in the Lisp REPL and run #'mirror-github-repos-on-sourcehut:
+
   #+begin_src lisp
-    (ql:quickload :gh-to-sourcehut)
-    ;; Edit .config in the gh-to-sourcehut package directory and reload
-    (ql:quickload :gh-to-sourcehut)
-    (multiple-value-setq (*failed* *succeeded*)
-    (gh-to-sourcehut:clone-user-gh-repos "jl2" "/temp/jl2-repos/")
+    (ql:quickload :github-to-sourcehut)
+    (time
+     (github-to-sourcehut:mirror-github-repos-on-sourcehut "/home/jeremiah/my-temp-repos/"
+                                                           :thread-count 24))
   #+end_src
 
-** 
+

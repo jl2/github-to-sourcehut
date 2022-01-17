@@ -14,12 +14,16 @@
 ;; ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-(defpackage :gh-to-sourcehut
+(defpackage :github-to-sourcehut
   (:use #:cl #:j-utils #:alexandria #:st-json)
-  (:export #:load-config
-           #:get-all-user-repos
-           #:gh-get
-           #:clone-user-gh-repos
-           #:get-gh-cache
-           #:clear-gh-cache
-           ))
+  (:export
+   #:all-user-github-repos
+
+   #:github-get
+   #:sourcehut-get
+   #:sourcehut-put
+   #:sourcehut-post
+   #:sourcehut-delete
+
+   #:mirror-github-repos-on-sourcehut
+   ))
